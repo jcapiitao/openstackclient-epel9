@@ -5,12 +5,7 @@ set -e
 sudo dnf upgrade --refresh -y
 
 # from https://docs.fedoraproject.org/en-US/epel/#_el9
-sudo dnf install -y \
-	less \
-	vim \
-	'dnf-command(config-manager)' \
-	python3-virtualenv \
-	git
+sudo dnf install -y 'dnf-command(config-manager)'
 sudo dnf config-manager --set-enabled crb
 sudo dnf install -y \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
@@ -26,3 +21,10 @@ sudo curl -o /etc/yum.repos.d/delorean.repo \
 	https://trunk.rdoproject.org/centos9-xena/current-passed-ci/delorean.repo
 sudo curl -o /etc/yum.repos.d/delorean-deps.repo \
 	https://trunk.rdoproject.org/centos9-xena/delorean-deps.repo
+
+# install some utilities
+sudo dnf install -y \
+	less \
+	vim \
+	python3-virtualenv \
+	git
