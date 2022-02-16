@@ -5,7 +5,9 @@ virtualenv -p /usr/bin/python3.9 .venv
 source .venv/bin/activate
 
 pip install rdopkg pymod2pkg
-rdopkg info conf:rpmfactory-client | grep name: | awk '{print $2}' > openstack_clients
+rdopkg info conf:rpmfactory-client | grep name: | awk '{print $2}' | sort > openstack_clients
+
+sed -i '/python-tripleoclient/d' openstack_clients
 
 > dependencies
 while read client; do
