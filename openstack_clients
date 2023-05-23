@@ -4,6 +4,7 @@ python-ceilometerclient
 python-cinderclient
 python-cloudkittyclient
 python-congressclient
+python-cyborgclient
 python-designateclient
 python-dracclient
 python-glanceclient

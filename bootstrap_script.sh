@@ -2,28 +2,26 @@
 
 set -e
 
-sudo dnf upgrade --refresh -y
+dnf upgrade --refresh -y
 
 # from https://docs.fedoraproject.org/en-US/epel/#_el9
-sudo dnf install -y 'dnf-command(config-manager)'
-sudo dnf config-manager --set-enabled crb
-sudo dnf install -y \
-    https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
-    https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+dnf install -y 'dnf-command(config-manager)'
+dnf config-manager --set-enabled crb
+dnf install -y epel-release epel-next-release
 
 # we set EPEL enabled repos as high priority
 EPEL_REPOS="/etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel-next.repo"
-sudo sed -i '/cost=.*$/d' $EPEL_REPOS
-sudo sed -i '/enabled=1/a cost=2000' $EPEL_REPOS
+sed -i '/cost=.*$/d' $EPEL_REPOS
+sed -i '/enabled=1/a cost=2000' $EPEL_REPOS
 
-# we install centos9-xena trunk repos
-sudo curl -o /etc/yum.repos.d/delorean.repo \
-	https://trunk.rdoproject.org/centos9-xena/current-passed-ci/delorean.repo
-sudo curl -o /etc/yum.repos.d/delorean-deps.repo \
-	https://trunk.rdoproject.org/centos9-xena/delorean-deps.repo
+# we install centos9-antelope trunk repos
+curl -o /etc/yum.repos.d/delorean.repo \
+	https://trunk.rdoproject.org/centos9-antelope/puppet-passed-ci/delorean.repo
+curl -o /etc/yum.repos.d/delorean-deps.repo \
+	https://trunk.rdoproject.org/centos9-antelope/delorean-deps.repo
 
 # install some utilities
-sudo dnf install -y \
+dnf install -y \
 	less \
 	vim \
 	python3-virtualenv \

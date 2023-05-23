@@ -13,6 +13,6 @@ sed -i '/python-tripleoclient/d' openstack_clients
 while read client; do
 	pkg_name=$(pymod2pkg $client --pyver py3)
 	echo -e "# $pkg_name" | tee -a dependencies
-	sudo dnf install $pkg_name <<< 'no' | grep -e delorean -e epel | tee -a dependencies
+	dnf install $pkg_name <<< 'no' | grep -e delorean -e epel | tee -a dependencies
 	echo -e "" >> dependencies
 done < openstack_clients
