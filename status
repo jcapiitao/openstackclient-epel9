@@ -1,1 +1,18 @@
-python-oslo-config python3-debtcollector python3-openstackdocstheme python3-oslo-i18n python3-oslotest python3-sphinxcontrib-apidoc python3-stestr 
+python-cliff python-autopage python-cmd2 python-mock python-testrepository 
+python-cmd2 
+python-debtcollector python-openstackdocstheme 
+python-dulwich python-sphinx-epytext 
+python-glanceclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-sphinxcontrib-apidoc python-warlock 
+python-hacking python-openstackdocstheme python-oslo-sphinx python-testrepository 
+python-keystoneauth1 python-mock python-openstackdocstheme python-oslo-config python-oslotest python-oslo-utils python-os-service-types python-sphinxcontrib-apidoc python-stestr 
+python-novaclient python-keystoneauth1 python-openstackdocstheme python-oslo-serialization python-oslo-utils python-sphinxcontrib-apidoc 
+python-openstackdocstheme python-dulwich 
+python-oslo-config python-debtcollector python-openstackdocstheme python-oslo-i18n python-oslotest python-sphinxcontrib-apidoc python-stestr 
+python-oslo-i18n python-openstackdocstheme python-sphinxcontrib-apidoc 
+python-oslo-serialization python-mock python-openstackdocstheme python-oslo-i18n python-oslotest python-oslo-utils python-stestr 
+python-oslotest python-stestr 
+python-oslo-utils python-debtcollector python-hacking python-openstackdocstheme python-oslo-i18n python-oslotest python-testrepository 
+python-os-service-types python-openstackdocstheme 
+python-sphinxcontrib-apidoc 
+python-stestr python-cliff 
+python-testrepository 
