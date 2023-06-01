@@ -1,5 +1,6 @@
+python-autopage ON_QA until 05/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-0759487e30
 python-cliff python-autopage python-cmd2 python-mock python-testrepository 
-python-cmd2 
+python-cmd2 on_QA until 02/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-2eed9797fa
 python-debtcollector python-openstackdocstheme 
 python-dulwich python-sphinx-epytext 
 python-glanceclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-sphinxcontrib-apidoc python-warlock 
@@ -7,12 +8,17 @@ python-hacking python-openstackdocstheme python-oslo-sphinx python-testrepositor
 python-keystoneauth1 python-mock python-openstackdocstheme python-oslo-config python-oslotest python-oslo-utils python-os-service-types python-sphinxcontrib-apidoc python-stestr 
 python-novaclient python-keystoneauth1 python-openstackdocstheme python-oslo-serialization python-oslo-utils python-sphinxcontrib-apidoc 
 python-openstackdocstheme python-dulwich 
+python-openstacksdk python-keystoneauth1 python-mock python-oslo-config python-oslotest python-os-service-types python-requestsexceptions python-stestr python-testrepository 
 python-oslo-config python-debtcollector python-openstackdocstheme python-oslo-i18n python-oslotest python-sphinxcontrib-apidoc python-stestr 
 python-oslo-i18n python-openstackdocstheme python-sphinxcontrib-apidoc 
 python-oslo-serialization python-mock python-openstackdocstheme python-oslo-i18n python-oslotest python-oslo-utils python-stestr 
+python-oslo-sphinx on_QA until 02/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-0bcad36364
 python-oslotest python-stestr 
 python-oslo-utils python-debtcollector python-hacking python-openstackdocstheme python-oslo-i18n python-oslotest python-testrepository 
 python-os-service-types python-openstackdocstheme 
-python-sphinxcontrib-apidoc 
+python-requestsexceptions on_QA until 08/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-3cedb58383
+python-sphinxcontrib-apidoc on_QA until 02/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-34d0b5e270
+python-sphinx-epytext 
 python-stestr python-cliff 
-python-testrepository 
+python-testrepository in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
+python-warlock 

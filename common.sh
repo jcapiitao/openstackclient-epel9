@@ -338,7 +338,7 @@ submit_to_boddhi() {
 }
 
 print_projects_not_processed() {
-    local projects=$(cat $STATUS_FILE | tr ' ' '\n' | sort | uniq | sed '/^$/d' | tr '\n' ' ')
+    local projects=$(cat $STATUS_FILE | tr ' ' '\n' | grep -e "^python" | sort | uniq | sed '/^$/d' | tr '\n' ' ')
     for p in $projects; do
         if [ "$p" == "python-mock" ]; then
             continue
