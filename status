@@ -4,7 +4,7 @@ python-cmd2 on_QA until 02/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPE
 python-debtcollector python-openstackdocstheme 
 python-dulwich python-sphinx-epytext 
 python-glanceclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-warlock 
-python-hacking python-openstackdocstheme python-oslo-sphinx python-testrepository 
+python-hacking python-openstackdocstheme python-testrepository 
 python-keystoneauth1 python-mock python-openstackdocstheme python-oslo-config python-oslotest python-oslo-utils python-os-service-types python-stestr 
 python-keystoneclient python-hacking python-keystoneauth1 python-mock python-openstackdocstheme python-oslo-config python-oslo-i18n python-oslo-serialization python-oslotest python-oslo-utils python-stestr 
 python-neutronclient python-cliff python-keystoneauth1 python-keystoneclient python-openstackdocstheme python-osc-lib python-os-client-config python-oslo-log python-oslo-serialization python-oslotest python-oslo-utils python-reno python-testrepository 
@@ -18,7 +18,6 @@ python-oslo-context python-debtcollector python-hacking python-openstackdocsthem
 python-oslo-i18n python-openstackdocstheme 
 python-oslo-log python-mock python-openstackdocstheme python-oslo-config python-oslo-context python-oslo-serialization python-oslotest python-oslo-utils python-testrepository 
 python-oslo-serialization python-mock python-openstackdocstheme python-oslo-i18n python-oslotest python-oslo-utils python-stestr 
-python-oslo-sphinx on_QA until 02/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-0bcad36364
 python-oslotest python-stestr 
 python-oslo-utils python-debtcollector python-hacking python-openstackdocstheme python-oslo-i18n python-oslotest python-testrepository 
 python-os-service-types python-openstackdocstheme 
