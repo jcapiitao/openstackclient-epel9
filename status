@@ -24,7 +24,9 @@ python-oslotest python-stestr
 python-oslo-utils python-debtcollector python-hacking python-openstackdocstheme python-oslo-i18n python-oslotest python-testrepository 
 python-os-service-types python-openstackdocstheme 
 python-reno python-dulwich 
+python-repoze-lru 
 python-requestsexceptions on_QA until 08/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-3cedb58383
+python-routes python-repoze-lru 
 python-sphinx-epytext 
 python-stestr python-cliff 
 python-testrepository on QA in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
