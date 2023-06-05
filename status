@@ -1,6 +1,5 @@
 python-autopage ON_QA until 05/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-0759487e30
-python-cliff python-autopage python-cmd2 python-mock python-testrepository 
-python-cmd2 on_QA until 02/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-2eed9797fa
+python-cliff python-autopage python-mock python-testrepository 
 python-debtcollector python-openstackdocstheme 
 python-dulwich python-sphinx-epytext 
 python-glanceclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-warlock 
@@ -25,5 +24,5 @@ python-reno python-dulwich
 python-requestsexceptions on_QA until 08/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-3cedb58383
 python-sphinx-epytext 
 python-stestr python-cliff 
-python-testrepository in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
+python-testrepository on QA in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
 python-warlock 
