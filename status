@@ -1,6 +1,5 @@
-python-autopage ON_QA until 05/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-0759487e30
 python-cinderclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-reno 
-python-cliff python-autopage
+python-cliff
 python-debtcollector python-openstackdocstheme 
 python-dulwich python-sphinx-epytext 
 python-glanceclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-warlock 
