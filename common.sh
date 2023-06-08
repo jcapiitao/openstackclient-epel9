@@ -266,8 +266,9 @@ get_latest_koji_build_nvr() {
 }
 
 get_latest_koji_build_task_url() {
-    local project=$(get_project)
     local build_nvr=""
+    local build_info=""
+    local build_task=""
 
     build_nvr=$(get_latest_koji_build_nvr)
     if [ $? -ne 0 ]; then
@@ -288,6 +289,38 @@ get_latest_koji_build_task_url() {
         echo -e "https://koji.fedoraproject.org/koji/taskinfo?taskID=$build_task"
         return 0
     fi
+}
+
+get_latest_koji_build_rpms() {
+    local build_nvr=""
+    local build_info=""
+    local rpms=""
+
+    build_nvr=$(get_latest_koji_build_nvr)
+    if [ $? -ne 0 ]; then
+        echo -e "Could not get the latest koji build NVR"
+        echo -e "$build_nvr"
+        return 1
+    fi
+
+    build_info=$(koji buildinfo $build_nvr)
+    if [ $? -ne 0 ]; then
+        echo -e "An error occurred when querying the build info"
+        echo -e "$build_info"
+        return 1
+    fi
+
+    rpms=$(echo -e "$build_info" | tr '\n' ' ' | sed 's/.*RPMs:\ \(.*\)/\1/' | tr '\t' '\n' | tr ' ' '\n' | grep -e "/mnt" | cut -d/ -f9 | rev | cut -d- -f3- | rev)
+    echo $rpms
+}
+
+test_epel9_installation() {
+    local rpms=""
+    rpms=$(get_latest_koji_build_rpms)
+    for _r in $rpms; do
+        mock -r centos-stream+epel-9-x86_64 --clean
+        mock -r centos-stream+epel-9-x86_64 --install $_r
+    done
 }
 
 add_latest_epel9_build_to_bz_ticket() {
