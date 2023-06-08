@@ -319,7 +319,7 @@ test_epel9_installation() {
     rpms=$(get_latest_koji_build_rpms)
     for _r in $rpms; do
         mock -r centos-stream+epel-9-x86_64 --clean
-        mock -r centos-stream+epel-9-x86_64 --install $_r
+        mock -r centos-stream+epel-9-x86_64 --enablerepo epel-testing --install $_r
     done
 }
 
