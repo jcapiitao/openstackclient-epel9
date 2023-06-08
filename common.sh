@@ -252,7 +252,7 @@ update_bz_ticket_blocks() {
 }
 
 get_latest_koji_build_nvr() {
-    local project=$(get_project)
+    local project=$(get_project $1)
     local build_nvr=""
 
     build_nvr=$(koji latest-build --quiet epel9-testing-candidate $project | awk '{print $1}')
@@ -270,7 +270,7 @@ get_latest_koji_build_task_url() {
     local build_info=""
     local build_task=""
 
-    build_nvr=$(get_latest_koji_build_nvr)
+    build_nvr=$(get_latest_koji_build_nvr $1)
     if [ $? -ne 0 ]; then
         echo -e "Could not get the latest koji build NVR"
         echo -e "$build_nvr"
@@ -296,7 +296,7 @@ get_latest_koji_build_rpms() {
     local build_info=""
     local rpms=""
 
-    build_nvr=$(get_latest_koji_build_nvr)
+    build_nvr=$(get_latest_koji_build_nvr $1)
     if [ $? -ne 0 ]; then
         echo -e "Could not get the latest koji build NVR"
         echo -e "$build_nvr"
@@ -316,7 +316,7 @@ get_latest_koji_build_rpms() {
 
 test_epel9_installation() {
     local rpms=""
-    rpms=$(get_latest_koji_build_rpms)
+    rpms=$(get_latest_koji_build_rpms $1)
     for _r in $rpms; do
         mock -r centos-stream+epel-9-x86_64 --clean
         mock -r centos-stream+epel-9-x86_64 --enablerepo epel-testing --install $_r

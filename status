@@ -28,5 +28,5 @@ python-requestsexceptions on_QA until 08/06 https://bodhi.fedoraproject.org/upda
 python-routes python-repoze-lru 
 python-sphinx-epytext 
 python-stestr python-cliff 
-python-testrepository on QA in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
+python-testrepository in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
 python-warlock 
