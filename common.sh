@@ -334,7 +334,7 @@ submit_to_boddhi() {
         echo -e "$build_nvr"
         return 1
     fi
-    bodhi updates new --type newpackage --notes "Latest build for EPEL 9" --autotime --bugs $bug_id --close-bugs $build_nvr
+    bodhi updates new --type newpackage --notes "Latest build for EPEL 9" --autotime --autokarma --bugs $bug_id --close-bugs $build_nvr
 }
 
 print_projects_not_processed() {

@@ -1,5 +1,5 @@
 python-cinderclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-reno 
-python-cliff
+python-cliff ON_QA until 15/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-d1292bc1d6
 python-debtcollector python-openstackdocstheme 
 python-dulwich python-sphinx-epytext 
 python-glanceclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-warlock 
