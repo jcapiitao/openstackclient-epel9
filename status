@@ -25,6 +25,6 @@ python-reno python-dulwich
 python-repoze-lru  ON_QA until 20/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-8aa62dc78a
 python-routes python-repoze-lru 
 python-sphinx-epytext ON_QA until 20/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-c3cbb6d590
-python-stestr 
+python-stestr ON_QA until 26/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-e585f54d99
 python-testrepository in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
-python-warlock ON_QA until 15/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-0347128420
+python-warlock ON_QA until 19/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-0347128420
