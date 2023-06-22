@@ -1,6 +1,6 @@
 python-cinderclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-reno 
 python-debtcollector python-openstackdocstheme 
-python-dulwich python-sphinx-epytext 
+python-dulwich
 python-glanceclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils
 python-hacking python-openstackdocstheme python-testrepository 
 python-keystoneauth1 python-mock python-openstackdocstheme python-oslo-config python-oslotest python-oslo-utils python-os-service-types python-stestr 
@@ -23,6 +23,5 @@ python-oslo-utils python-debtcollector python-hacking python-openstackdocstheme 
 python-os-service-types python-openstackdocstheme 
 python-reno python-dulwich 
 python-routes ON_QA until 28/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-8dcb412637
-python-sphinx-epytext ON_QA until 21/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-c3cbb6d590
 python-stestr ON_QA until 26/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-e585f54d99
 python-testrepository in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
