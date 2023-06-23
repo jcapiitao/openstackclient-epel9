@@ -1,6 +1,6 @@
 python-cinderclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils python-reno 
 python-debtcollector python-openstackdocstheme 
-python-dulwich
+python-dulwich ON_QA until 03/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-54ceb677d0
 python-glanceclient python-keystoneauth1 python-openstackdocstheme python-oslo-utils
 python-hacking python-openstackdocstheme python-testrepository 
 python-keystoneauth1 python-mock python-openstackdocstheme python-oslo-config python-oslotest python-oslo-utils python-os-service-types python-stestr 
