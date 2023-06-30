@@ -22,5 +22,4 @@ python-oslotest ON_QA until 04/07 https://bodhi.fedoraproject.org/updates/FEDORA
 python-oslo-utils python-debtcollector python-hacking python-openstackdocstheme python-oslo-i18n python-oslotest python-testrepository 
 python-os-service-types python-openstackdocstheme 
 python-reno python-dulwich 
-python-routes ON_QA until 28/06 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-8dcb412637
 python-testrepository in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
