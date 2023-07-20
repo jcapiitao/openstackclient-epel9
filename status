@@ -9,8 +9,8 @@ python-openstackclient python-cinderclient python-keystoneclient python-mock pyt
 python-openstacksdk python-keystoneauth1 python-mock python-oslo-config
 python-osc-lib python-keystoneauth1 python-mock python-openstacksdk python-os-client-config python-oslo-utils 
 python-os-client-config python-glanceclient python-openstacksdk 
-python-oslo-config 
-python-oslo-context 
+python-oslo-config ON_QA until 28/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-4375a50f66
+python-oslo-context ON_QA until 28/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-4a75eba95e
 python-oslo-log python-mock python-oslo-config python-oslo-context python-oslo-serialization python-oslo-utils
 python-oslo-serialization python-mock python-oslo-utils 
-python-oslo-utils
+python-oslo-utils ON_QA until 28/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-b1eedbb6f9
