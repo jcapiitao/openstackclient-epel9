@@ -1,17 +1,16 @@
 python-cinderclient python-keystoneauth1 python-oslo-utils 
 python-glanceclient python-keystoneauth1 python-oslo-utils
-python-keystoneauth1 python-mock python-oslo-config python-oslo-utils 
+python-keystoneauth1 python-mock python-oslo-config python-oslo-utils
 python-keystoneclient python-keystoneauth1 python-mock python-oslo-config python-oslo-serialization python-oslo-utils 
 python-mistralclient python-osc-lib python-oslo-utils 
-python-neutronclient python-keystoneauth1 python-keystoneclient python-osc-lib python-os-client-config python-oslo-log python-oslo-serialization python-oslo-utils python-testrepository 
+python-neutronclient python-keystoneauth1 python-keystoneclient python-osc-lib python-os-client-config python-oslo-log python-oslo-serialization python-oslo-utils
 python-novaclient python-keystoneauth1 python-oslo-serialization python-oslo-utils 
 python-openstackclient python-cinderclient python-keystoneclient python-mock python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config python-oslo-utils 
-python-openstacksdk python-keystoneauth1 python-mock python-oslo-config python-testrepository 
+python-openstacksdk python-keystoneauth1 python-mock python-oslo-config
 python-osc-lib python-keystoneauth1 python-mock python-openstacksdk python-os-client-config python-oslo-utils 
 python-os-client-config python-glanceclient python-openstacksdk 
 python-oslo-config 
 python-oslo-context 
-python-oslo-log python-mock python-oslo-config python-oslo-context python-oslo-serialization python-oslo-utils python-testrepository 
+python-oslo-log python-mock python-oslo-config python-oslo-context python-oslo-serialization python-oslo-utils
 python-oslo-serialization python-mock python-oslo-utils 
-python-oslo-utils python-testrepository 
-python-testrepository in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
+python-oslo-utils
