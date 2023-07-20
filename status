@@ -1,16 +1,16 @@
-python-cinderclient python-keystoneauth1 python-oslo-utils 
-python-glanceclient python-keystoneauth1 python-oslo-utils
-python-keystoneauth1 python-mock python-oslo-config python-oslo-utils
-python-keystoneclient python-keystoneauth1 python-mock python-oslo-config python-oslo-serialization python-oslo-utils 
-python-mistralclient python-osc-lib python-oslo-utils 
-python-neutronclient python-keystoneauth1 python-keystoneclient python-osc-lib python-os-client-config python-oslo-log python-oslo-serialization python-oslo-utils
-python-novaclient python-keystoneauth1 python-oslo-serialization python-oslo-utils 
-python-openstackclient python-cinderclient python-keystoneclient python-mock python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config python-oslo-utils 
-python-openstacksdk python-keystoneauth1 python-mock python-oslo-config
-python-osc-lib python-keystoneauth1 python-mock python-openstacksdk python-os-client-config python-oslo-utils 
-python-os-client-config python-glanceclient python-openstacksdk 
+python-cinderclient python-keystoneauth1 python-oslo-utils 2
+python-glanceclient python-keystoneauth1 python-oslo-utils 2
+python-keystoneauth1 python-mock python-oslo-config python-oslo-utils 1
+python-keystoneclient python-keystoneauth1 python-mock python-oslo-config python-oslo-serialization python-oslo-utils 2
+python-mistralclient python-osc-lib python-oslo-utils 4
+python-neutronclient python-keystoneauth1 python-keystoneclient python-osc-lib python-os-client-config python-oslo-log python-oslo-serialization python-oslo-utils 4
+python-novaclient python-keystoneauth1 python-oslo-serialization python-oslo-utils 2
+python-openstackclient python-cinderclient python-keystoneclient python-mock python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config python-oslo-utils 4
+python-openstacksdk python-keystoneauth1 python-mock python-oslo-config 2
+python-osc-lib python-keystoneauth1 python-mock python-openstacksdk python-os-client-config python-oslo-utils 3
+python-os-client-config python-glanceclient python-openstacksdk 3
 python-oslo-config ON_QA until 28/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-4375a50f66
 python-oslo-context ON_QA until 28/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-4a75eba95e
-python-oslo-log python-mock python-oslo-config python-oslo-context python-oslo-serialization python-oslo-utils
-python-oslo-serialization python-mock python-oslo-utils 
+python-oslo-log python-mock python-oslo-config python-oslo-context python-oslo-serialization python-oslo-utils 2
+python-oslo-serialization python-mock python-oslo-utils 1
 python-oslo-utils ON_QA until 28/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-b1eedbb6f9
