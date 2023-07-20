@@ -1,21 +1,17 @@
 python-cinderclient python-keystoneauth1 python-oslo-utils 
-python-debtcollector ON_QA until 19/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-c1ecf58b9c
 python-glanceclient python-keystoneauth1 python-oslo-utils
-python-hacking ON_QA until 19/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-c2c5856908
-python-keystoneauth1 python-mock python-oslo-config python-oslo-utils python-os-service-types 
-python-keystoneclient python-hacking python-keystoneauth1 python-mock python-oslo-config python-oslo-i18n python-oslo-serialization python-oslo-utils 
-python-mistralclient python-osc-lib python-oslo-i18n python-oslo-utils 
+python-keystoneauth1 python-mock python-oslo-config python-oslo-utils 
+python-keystoneclient python-keystoneauth1 python-mock python-oslo-config python-oslo-serialization python-oslo-utils 
+python-mistralclient python-osc-lib python-oslo-utils 
 python-neutronclient python-keystoneauth1 python-keystoneclient python-osc-lib python-os-client-config python-oslo-log python-oslo-serialization python-oslo-utils python-testrepository 
 python-novaclient python-keystoneauth1 python-oslo-serialization python-oslo-utils 
-python-openstackclient python-cinderclient python-keystoneclient python-mock python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config python-oslo-i18n python-oslo-utils 
-python-openstacksdk python-keystoneauth1 python-mock python-oslo-config python-os-service-types python-testrepository 
-python-osc-lib python-keystoneauth1 python-mock python-openstacksdk python-os-client-config python-oslo-i18n python-oslo-utils 
+python-openstackclient python-cinderclient python-keystoneclient python-mock python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config python-oslo-utils 
+python-openstacksdk python-keystoneauth1 python-mock python-oslo-config python-testrepository 
+python-osc-lib python-keystoneauth1 python-mock python-openstacksdk python-os-client-config python-oslo-utils 
 python-os-client-config python-glanceclient python-openstacksdk 
-python-oslo-config python-debtcollector python-oslo-i18n 
-python-oslo-context python-debtcollector python-hacking 
-python-oslo-i18n ON_QA until 19/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-702e58a526
+python-oslo-config 
+python-oslo-context 
 python-oslo-log python-mock python-oslo-config python-oslo-context python-oslo-serialization python-oslo-utils python-testrepository 
-python-oslo-serialization python-mock python-oslo-i18n python-oslo-utils 
-python-oslo-utils python-debtcollector python-hacking python-oslo-i18n python-testrepository 
-python-os-service-types ON_QA until 19/07 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-66e447b74d
+python-oslo-serialization python-mock python-oslo-utils 
+python-oslo-utils python-testrepository 
 python-testrepository in the process to be retired https://review.rdoproject.org/r/q/topic:remove_testrepository_br
