@@ -1,11 +1,11 @@
 python-cinderclient 2
 python-glanceclient 2
-python-keystoneclient python-mock 2
+python-keystoneclient 2
 python-mistralclient python-osc-lib 4
 python-neutronclient python-keystoneclient python-osc-lib python-os-client-config python-oslo-log 4
 python-novaclient 2
-python-openstackclient python-cinderclient python-keystoneclient python-mock python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config 4
-python-openstacksdk python-mock 2
-python-osc-lib python-mock python-openstacksdk python-os-client-config 3
+python-openstackclient python-cinderclient python-keystoneclient python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config 4
+python-openstacksdk 2
+python-osc-lib python-openstacksdk python-os-client-config 3
 python-os-client-config python-glanceclient python-openstacksdk 3
-python-oslo-log python-mock 2
+python-oslo-log 2
