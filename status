@@ -1,13 +1,11 @@
-python-cinderclient python-keystoneauth1 2
-python-glanceclient python-keystoneauth1 2
-python-keystoneauth1 python-mock ON_QA until 08/08 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-051b3f8d84
-python-keystoneclient python-keystoneauth1 python-mock python-oslo-serialization 2
+python-cinderclient 2
+python-glanceclient 2
+python-keystoneclient python-mock 2
 python-mistralclient python-osc-lib 4
-python-neutronclient python-keystoneauth1 python-keystoneclient python-osc-lib python-os-client-config python-oslo-log python-oslo-serialization 4
-python-novaclient python-keystoneauth1 python-oslo-serialization 2
+python-neutronclient python-keystoneclient python-osc-lib python-os-client-config python-oslo-log 4
+python-novaclient 2
 python-openstackclient python-cinderclient python-keystoneclient python-mock python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config 4
-python-openstacksdk python-keystoneauth1 python-mock 2
-python-osc-lib python-keystoneauth1 python-mock python-openstacksdk python-os-client-config 3
+python-openstacksdk python-mock 2
+python-osc-lib python-mock python-openstacksdk python-os-client-config 3
 python-os-client-config python-glanceclient python-openstacksdk 3
-python-oslo-log python-mock python-oslo-serialization 2
-python-oslo-serialization python-mock ON_QA until 08/08 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-589b5c8cc6
+python-oslo-log python-mock 2
