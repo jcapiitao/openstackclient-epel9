@@ -1,11 +1,11 @@
-python-cinderclient 2
-python-glanceclient 2
-python-keystoneclient 2
+python-cinderclient ON_QA until 04/09 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-42a071ad33
+python-glanceclient ON_QA until 04/09 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-65614df024
+python-keystoneclient ON_QA until 04/09 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-d475b2afa0
 python-mistralclient python-osc-lib 4
 python-neutronclient python-keystoneclient python-osc-lib python-os-client-config python-oslo-log 4
-python-novaclient 2
+python-novaclient ON_QA until 04/09 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-4e1040939b
 python-openstackclient python-cinderclient python-keystoneclient python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config 4
-python-openstacksdk 2
+python-openstacksdk ON_QA until 04/09 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-656df212a1
 python-osc-lib python-openstacksdk python-os-client-config 3
 python-os-client-config python-glanceclient python-openstacksdk 3
-python-oslo-log 2
+python-oslo-log ON_QA until 04/09 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-78492fceec
