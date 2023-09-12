@@ -1,5 +1,4 @@
 python-mistralclient python-osc-lib 5
 python-neutronclient python-keystoneclient python-osc-lib python-os-client-config python-oslo-log 5
-python-openstackclient python-cinderclient python-keystoneclient python-novaclient python-openstacksdk python-osc-lib-tests python-os-client-config 6
-python-osc-lib python-openstacksdk python-os-client-config 4
-python-os-client-config ON_QA until 12/09 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-8db4db689b
+python-openstackclient python-cinderclient python-keystoneclient python-novaclient python-osc-lib-tests 6
+python-osc-lib 4
