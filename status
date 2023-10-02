@@ -1,1 +1,1 @@
-python-openstackclient python-cinderclient python-keystoneclient python-novaclient python-osc-lib-tests 6
+python-openstackclient ON_QA until 11/10/23 https://bodhi.fedoraproject.org/updates/FEDORA-EPEL-2023-d7129b95b4
