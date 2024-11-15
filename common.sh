@@ -2,21 +2,23 @@
 
 DIRNAME=$(dirname -- "${BASH_SOURCE[0]}")
 STATUS_FILE="$HOME/workspace/openstackclient-epel9/status"
-DISTGIT_PATH="$HOME/workspace/packages/python-openstackclient-epel9/"
+DISTGIT_PATH="$HOME/workspace/packages/python-openstackclient-epel/"
 PROJECTS_BZID_PATH="$DISTGIT_PATH/projects_bzid"
 BZ_IGNORED_PATH="$DISTGIT_PATH/bz_ignored"
+EPEL_COMP_LIST="$DIRNAME/fedora_epel_component_list"
 
-file_bz_branch_and_build_on_epel9() {
+file_bz_branch_and_build_on_epel() {
     # From https://docs.fedoraproject.org/en-US/epel/epel-package-request/
-    local project=$1
+    local project=$(get_project $1)
+    local release=${2:-10}
     if [ ! -n "$project" ]; then
         echo "Provide a project"
         return 2
     fi
-    if grep -q -e $project $DIRNAME/fedora_epel9_active_components; then
-        bz_id=$(bugzilla new -i -p "Fedora EPEL" -v epel9 -c $project --summary "Please branch and build $project in epel9" --comment "Please branch and build $project in epel9.")
+    if grep -q -e $project $EPEL_COMP_LIST; then
+        bz_id=$(bugzilla new -i -p "Fedora EPEL" -v epel${release} -c $project --summary "Please branch and build $project in epel${release}" --comment "Please branch and build $project in epel${release}.")
     else
-        bz_id=$(bugzilla new -i -p Fedora -v rawhide -c $project --summary "Please branch and build $project in epel9" --comment "Please branch and build $project in epel9.")
+        bz_id=$(bugzilla new -i -p Fedora -v rawhide -c $project --summary "Please branch and build $project in epel${release}" --comment "Please branch and build $project in epel${release}.")
     fi
     if [ $? -eq 0 ]; then
         echo -e "$bz_id" > $PROJECTS_BZID_PATH/$project
@@ -29,15 +31,19 @@ file_bz_branch_and_build_on_epel9() {
 }
 
 get_comp() {
-    local project=$1
+    local project=$(get_project $1)
     if [ ! -n "$project" ]; then
         project=$(basename $PWD)
     fi
-    if grep -q -e "$project" $DIRNAME/fedora_epel9_active_components; then
+    if grep -q -e "$project" $EPEL_COMP_LIST; then
         echo "Fedora EPEL"
     else
         echo "Fedora"
     fi
+}
+
+update_fedora_epel_comp_list() {
+    bugzilla info -c "Fedora EPEL" > $EPEL_COMP_LIST
 }
 
 get_project() {
@@ -49,8 +55,9 @@ get_project() {
     fi
 }
 
-find_epel9_branch_ticket() {
+find_epel_branch_ticket() {
     local project=$(get_project $1)
+    local release=${2:-10}
     local component=$(get_comp $project)
     local bug_id=""
     local bz_ignored=""
@@ -65,13 +72,13 @@ find_epel9_branch_ticket() {
     sed -i '/^[[:space:]]*$/d' $BZ_IGNORED_PATH
     bz_ignored=$(sed 's/^\(.*\)$/-e\ \1/g' $BZ_IGNORED_PATH | tr '\n' ' ')
     if [ -n "$bz_ignored" ]; then
-        bugs=$(bugzilla query -p "$component" -c $project -s CLOSED | grep -i -e "Please .*epel9$" -e "Please.*epel 9$" | grep -v $bz_ignored)
+        bugs=$(bugzilla query -p "$component" -c $project -s CLOSED | grep -i -e "Please .*epel${release}$" -e "Please.*epel ${release}$" | grep -v $bz_ignored)
     else
-        bugs=$(bugzilla query -p "$component" -c $project -s CLOSED | grep -i -e "Please .*epel9$" -e "Please.*epel 9$")
+        bugs=$(bugzilla query -p "$component" -c $project -s CLOSED | grep -i -e "Please .*epel${release}" -e "Please.*epel ${release}$")
     fi
 
     if [ -n "$bugs" ]; then
-        echo -e "A EPEL9 ticket was already closed. Needs a manual check. Exiting."
+        echo -e "A EPEL${release} ticket was already closed. Needs a manual check. Exiting."
         echo -e "To ignore the ticket, add its ID to the $BZ_IGNORED_PATH file"
         echo -e "e.g: echo 2210073 >> $BZ_IGNORED_PATH\n"
         echo -e "$bugs"
@@ -80,9 +87,9 @@ find_epel9_branch_ticket() {
 
     bugs=""
     if [ -n "$bz_ignored" ]; then
-        bugs=$(bugzilla query -p "$component" -c $project -s NEW,OPEN,ASSIGNED,MODIFIED,ON_DEV,ON_QA | grep -i -e "Please .*epel9$" -e "Please.*epel 9$" | grep -v $bz_ignored)
+        bugs=$(bugzilla query -p "$component" -c $project -s NEW,OPEN,ASSIGNED,MODIFIED,ON_DEV,ON_QA | grep -i -e "Please .*epel${release}$" -e "Please.*epel ${release}$" | grep -v $bz_ignored)
     else
-        bugs=$(bugzilla query -p "$component" -c $project -s NEW,OPEN,ASSIGNED,MODIFIED,ON_DEV,ON_QA | grep -i -e "Please .*epel9$" -e "Please.*epel 9$")
+        bugs=$(bugzilla query -p "$component" -c $project -s NEW,OPEN,ASSIGNED,MODIFIED,ON_DEV,ON_QA | grep -i -e "Please .*epel${release}$" -e "Please.*epel ${release}$")
     fi
 
     if [ $(echo -e "$bugs" | wc -l) -gt 1 ]; then
@@ -121,8 +128,9 @@ is_fedora_repo() {
     fi
 }
 
-is_epel9_branch() {
-    if git branch --all | grep -q -e "epel9$"; then
+is_epel_branch() {
+    local release=${1:-10}
+    if git branch --all | grep -q -e "epel${release}$"; then
         return 0
     else
         return 1
@@ -137,39 +145,40 @@ is_local_build() {
     fi
 }
 
-request_epel9_branch() {
+request_epel_branch() {
+    local project=$(get_project)
+    local bug_id=$1
+    local release=${2:-10}
     if ! is_fedora_repo; then
         echo "It's not a Fedora repo"
         return 1
     fi
     git fetch --all
-    if is_epel9_branch; then
-        echo "The repo has already an epel9 branch"
+    if is_epel_branch $release; then
+        echo "The repo has already an epel${release} branch"
         return 0
     fi
 
-    local project=$(get_project)
-    local bug_id=$1
     if [ ! -n "$bug_id" ]; then
-        bug_id=$(find_epel9_branch_ticket $project)
+        bug_id=$(find_epel_branch_ticket $project $release)
         if [ $? -ne 0 ]; then
             echo -e "$bug_id"
             return 1
         fi
     fi
     if ! git remote | grep -q -e "jcapitao"; then
-        pagure_url=$(fedpkg request-branch epel9)
+        pagure_url=$(fedpkg request-branch epel${release})
         if [ $? -eq 0 ]; then
-            echo -e "The epel9 branch has been requested"
+            echo -e "The epel${release} branch has been requested"
             echo -e "Updating the BZ ticket with the pagure URL"
             bugzilla modify $bug_id -a jcapitao@redhat.com -s ASSIGNED --comment "$pagure_url"   
         else
-            echo -e "An error occurred when requesting the epel9 branch to Pagure"
+            echo -e "An error occurred when requesting the epel${release} branch to Pagure"
             echo -e "$pagure_url"
             return 1
 	fi
     else
-        echo -e "You are not owner of this repo, you cannot request epel9 branch"
+        echo -e "You are not owner of this repo, you cannot request epel${release} branch"
         return 1
     fi
 }
@@ -200,15 +209,16 @@ list_projects_blocked_by_this_one() {
 }
 
 update_bz_ticket_depends_on() {
+    local release=${1:-10}
     local main_project=$(get_project)
-    local main_bug_id=$(find_epel9_branch_ticket $main_project)
+    local main_bug_id=$(find_epel_branch_ticket $main_project $release)
     local bug_id=""
     local bug_ids=""
     local needs_update=false
 
     current_depends_on=$(bugzilla query -b $main_bug_id --raw | grep -e "depends_on")
     for project in $(list_missing_brs); do
-        bug_id=$(find_epel9_branch_ticket $project)
+        bug_id=$(find_epel_branch_ticket $project $release)
         if [ $? -eq 0 ]; then
             bug_ids="$bug_ids $bug_id"
             if ! echo -e "$current_depends_on" | grep -q -e "$bug_id"; then
@@ -226,15 +236,16 @@ update_bz_ticket_depends_on() {
 }
 
 update_bz_ticket_blocks() {
+    local release=${1:-10}
     local main_project=$(get_project)
-    local main_bug_id=$(find_epel9_branch_ticket $main_project)
+    local main_bug_id=$(find_epel_branch_ticket $main_project $release)
     local bug_id=""
     local bug_ids=""
     local needs_update=false
 
     current_blocks=$(bugzilla query -b $main_bug_id --raw | grep -e "blocks")
     for project in $(list_projects_blocked_by_this_one); do
-        bug_id=$(find_epel9_branch_ticket $project)
+        bug_id=$(find_epel_branch_ticket $project $release)
         if [ $? -eq 0 ]; then
             bug_ids="$bug_ids $bug_id"
             if ! echo -e "$current_blocks" | grep -q -e "$bug_id"; then
@@ -253,9 +264,16 @@ update_bz_ticket_blocks() {
 
 get_latest_koji_build_nvr() {
     local project=$(get_project $1)
+    local release=${2:-10}
     local build_nvr=""
+    local tag=""
 
-    build_nvr=$(koji latest-build --quiet epel9-testing-candidate $project | awk '{print $1}')
+    if [ $release -eq 9 ]; then
+        tag=epel9-testing-candidate
+    else
+        tag=epel10.0-testing-candidate
+    fi
+    build_nvr=$(koji latest-build --quiet $tag $project | awk '{print $1}')
     if [ -n "$build_nvr" ]; then
         echo -e "$build_nvr"
         return 0
@@ -266,11 +284,13 @@ get_latest_koji_build_nvr() {
 }
 
 get_latest_koji_build_task_url() {
+    local project=$(get_project $1)
+    local release=${2:-10}
     local build_nvr=""
     local build_info=""
     local build_task=""
 
-    build_nvr=$(get_latest_koji_build_nvr $1)
+    build_nvr=$(get_latest_koji_build_nvr $project $release)
     if [ $? -ne 0 ]; then
         echo -e "Could not get the latest koji build NVR"
         echo -e "$build_nvr"
@@ -292,11 +312,13 @@ get_latest_koji_build_task_url() {
 }
 
 get_latest_koji_build_rpms() {
+    local project=$(get_project $1)
+    local release=${2:-10}
     local build_nvr=""
     local build_info=""
     local rpms=""
 
-    build_nvr=$(get_latest_koji_build_nvr $1)
+    build_nvr=$(get_latest_koji_build_nvr $project $release)
     if [ $? -ne 0 ]; then
         echo -e "Could not get the latest koji build NVR"
         echo -e "$build_nvr"
@@ -314,28 +336,32 @@ get_latest_koji_build_rpms() {
     echo $rpms
 }
 
-test_epel9_installation() {
+test_epel_installation() {
+    local project=$(get_project $1)
+    local release=${2:-10}
     local rpms=""
-    rpms=$(get_latest_koji_build_rpms $1)
+    rpms=$(get_latest_koji_build_rpms $project $release)
     for _r in $rpms; do
-        mock -r centos-stream+epel-9-x86_64 --clean
-        mock -r centos-stream+epel-9-x86_64 --enablerepo epel-testing --install $_r
+        mock -r centos-stream+epel-${release}-x86_64 --clean
+        mock -r centos-stream+epel-${release}-x86_64 --enablerepo epel-testing --install $_r
     done
 }
 
-add_latest_epel9_build_to_bz_ticket() {
+add_latest_epel_build_to_bz_ticket() {
     local bug_id=$1
+    local project=$(get_project $2)
+    local release=${3:-10}
     local build_task_url=''
 
     if [ ! -n "$bug_id" ]; then
-        bug_id=$(find_epel9_branch_ticket $project)
+        bug_id=$(find_epel_branch_ticket $project $release)
         if [ $? -ne 0 ]; then
             echo -e "$bug_id"
             return 1
         fi
     fi
 
-    build_task_url=$(get_latest_koji_build_task_url)
+    build_task_url=$(get_latest_koji_build_task_url $release)
     if [ $? -eq 0 ]; then
         output=$(bugzilla modify $bug_id --comment "$build_task_url")
         if [ $? -eq 0 ]; then
@@ -351,10 +377,11 @@ add_latest_epel9_build_to_bz_ticket() {
 
 submit_to_boddhi() {
     local bug_id=$1
+    local release=${2:-10}
     local build_nvr=""
 
     if [ ! -n "$bug_id" ]; then
-        bug_id=$(find_epel9_branch_ticket $project)
+        bug_id=$(find_epel_branch_ticket $project $release)
         if [ $? -ne 0 ]; then
             echo -e "$bug_id"
             return 1
@@ -367,7 +394,7 @@ submit_to_boddhi() {
         echo -e "$build_nvr"
         return 1
     fi
-    bodhi updates new --type newpackage --notes "Latest build for EPEL 9" --autotime --autokarma --bugs $bug_id --close-bugs $build_nvr
+    bodhi updates new --type newpackage --notes "Latest build for EPEL ${release}" --autotime --autokarma --bugs $bug_id --close-bugs $build_nvr
 }
 
 print_projects_not_processed() {
@@ -394,11 +421,11 @@ process_epel9() {
 
     # Filing a BZ ticket or fetching the ID
     echo -e "Checking if a BZ ticket already exists"
-    bug_id=$(find_epel9_branch_ticket $project)
+    bug_id=$(find_epel_branch_ticket $project 9)
     if [ $? -ne 0 ]; then
         echo -e "No BZ ticket found"
         echo -e "Filing the BZ ticket"
-        bug_id=$(file_bz_branch_and_build_on_epel9 $project)
+        bug_id=$(file_bz_branch_and_build_on_epel $project 9)
         if [ $? -ne 0 ]; then
             echo -e "An error occurred during the creation of the BZ ticket"
             echo -e "$bug_id"
@@ -413,6 +440,41 @@ process_epel9() {
     # Editing the BZ tickets that are blocked by this one
     update_bz_ticket_depends_on
     update_bz_ticket_blocks
-    request_epel9_branch $bug_id
+    request_epel_branch $bug_id 9
+    echo -e "https://bugzilla.redhat.com/show_bug.cgi?id=$bug_id"
+}
+
+process_epel10() {
+    if ! is_fedora_repo; then
+        echo "It's not a Fedora repo"
+        return 1
+    fi
+    local project=$(get_project)
+    local bug_id=""
+
+    update_status
+
+    # Filing a BZ ticket or fetching the ID
+    echo -e "Checking if a BZ ticket already exists"
+    bug_id=$(find_epel_branch_ticket $project 10)
+    if [ $? -ne 0 ]; then
+        echo -e "No BZ ticket found"
+        echo -e "Filing the BZ ticket"
+        bug_id=$(file_bz_branch_and_build_on_epel $project 10)
+        if [ $? -ne 0 ]; then
+            echo -e "An error occurred during the creation of the BZ ticket"
+            echo -e "$bug_id"
+            return 1
+        else
+            echo -e "The BZ ticket is now created $bug_id"
+        fi
+    else
+        echo -e "The BZ ticket ID was already created $bug_id"
+    fi
+
+    # Editing the BZ tickets that are blocked by this one
+    update_bz_ticket_depends_on
+    update_bz_ticket_blocks
+    request_epel_branch $bug_id 10
     echo -e "https://bugzilla.redhat.com/show_bug.cgi?id=$bug_id"
 }
